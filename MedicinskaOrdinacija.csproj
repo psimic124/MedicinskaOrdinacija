@@ -56,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doktor.cs" />
+    <Compile Include="FormPatients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPatients.Designer.cs">
+      <DependentUpon>FormPatients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Karton.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -63,11 +69,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedOrdinacijaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedOrdinacijaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OrdinacijaDB.cs" />
     <Compile Include="Pacijent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Termin.cs" />
+    <EmbeddedResource Include="FormPatients.resx">
+      <DependentUpon>FormPatients.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +94,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="MedOrdinacijaDataSet.xsc">
+      <DependentUpon>MedOrdinacijaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MedOrdinacijaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MedOrdinacijaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MedOrdinacijaDataSet.xss">
+      <DependentUpon>MedOrdinacijaDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

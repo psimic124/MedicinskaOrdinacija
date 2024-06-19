@@ -8,7 +8,7 @@ namespace MedicinskaOrdinacija
 
     [Table("Doktori")]
     public partial class Doktor
-    {
+{
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doktor()
         {

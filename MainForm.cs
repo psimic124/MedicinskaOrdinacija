@@ -14,5 +14,9 @@ namespace MedicinskaOrdinacija {
             InitializeComponent();
         }
 
+        private void btnPatients_Click(object sender, EventArgs e) {
+            FormPatients formPatients = new FormPatients();
+            formPatients.ShowDialog();
+        }
     }
 }

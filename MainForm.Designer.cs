@@ -50,6 +50,7 @@
             this.btnPatients.TabIndex = 1;
             this.btnPatients.Text = "Upravljaj Pacijentima";
             this.btnPatients.UseVisualStyleBackColor = false;
+            this.btnPatients.Click += new System.EventHandler(this.btnPatients_Click);
             // 
             // btnSchedules
             // 
