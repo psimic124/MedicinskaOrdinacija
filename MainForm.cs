@@ -23,5 +23,10 @@ namespace MedicinskaOrdinacija {
             FormDoctors formDoctors = new FormDoctors();
             formDoctors.ShowDialog();
         }
+
+        private void btnCartons_Click(object sender, EventArgs e) {
+            FormCartons formCartons = new FormCartons();
+            formCartons.ShowDialog();
+        }
     }
 }

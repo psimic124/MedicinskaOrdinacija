@@ -43,6 +43,9 @@ namespace MedicinskaOrdinacija {
             modelBuilder.Entity<Karton>()
                 .Property(e => e.Dijagnoza)
                 .IsUnicode(false);
+            modelBuilder.Entity<Karton>()
+                .Property(e => e.Terapija)
+                .IsVariableLength();
 
             modelBuilder.Entity<Pacijent>()
                 .Property(e => e.Ime)

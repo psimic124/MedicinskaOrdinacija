@@ -862,7 +862,7 @@ namespace MedicinskaOrdinacija {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public KartoniRow AddKartoniRow(PacijentiRow parentPacijentiRowByFK_Pacijent_ID, string Dijagnoza, byte[] Terapija, System.DateTime DatumKartona) {
+            public KartoniRow AddKartoniRow(PacijentiRow parentPacijentiRowByFK_Pacijent_ID, string Dijagnoza, string Terapija, System.DateTime DatumKartona) {
                 KartoniRow rowKartoniRow = ((KartoniRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -918,7 +918,7 @@ namespace MedicinskaOrdinacija {
                 base.Columns.Add(this.columnPacijentID);
                 this.columnDijagnoza = new global::System.Data.DataColumn("Dijagnoza", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDijagnoza);
-                this.columnTerapija = new global::System.Data.DataColumn("Terapija", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columnTerapija = new global::System.Data.DataColumn("Terapija", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTerapija);
                 this.columnDatumKartona = new global::System.Data.DataColumn("DatumKartona", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDatumKartona);
@@ -1967,10 +1967,10 @@ namespace MedicinskaOrdinacija {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public byte[] Terapija {
+            public string Terapija {
                 get {
                     try {
-                        return ((byte[])(this[this.tableKartoni.TerapijaColumn]));
+                        return ((string)(this[this.tableKartoni.TerapijaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Terapija\' in table \'Kartoni\' is DBNull.", e);
@@ -3256,7 +3256,7 @@ SELECT KartonID, PacijentID, Dijagnoza, Terapija, DatumKartona FROM Kartoni WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int PacijentID, string Dijagnoza, byte[] Terapija, global::System.Nullable<global::System.DateTime> DatumKartona) {
+        public virtual int Insert(int PacijentID, string Dijagnoza, string Terapija, global::System.Nullable<global::System.DateTime> DatumKartona) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(PacijentID));
             if ((Dijagnoza == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -3268,7 +3268,7 @@ SELECT KartonID, PacijentID, Dijagnoza, Terapija, DatumKartona FROM Kartoni WHER
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((byte[])(Terapija));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Terapija));
             }
             if ((DatumKartona.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DatumKartona.Value));
@@ -3296,7 +3296,7 @@ SELECT KartonID, PacijentID, Dijagnoza, Terapija, DatumKartona FROM Kartoni WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int PacijentID, string Dijagnoza, byte[] Terapija, global::System.Nullable<global::System.DateTime> DatumKartona, int Original_KartonID, int Original_PacijentID, global::System.Nullable<global::System.DateTime> Original_DatumKartona, int KartonID) {
+        public virtual int Update(int PacijentID, string Dijagnoza,string Terapija, global::System.Nullable<global::System.DateTime> DatumKartona, int Original_KartonID, int Original_PacijentID, global::System.Nullable<global::System.DateTime> Original_DatumKartona, int KartonID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(PacijentID));
             if ((Dijagnoza == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -3308,7 +3308,7 @@ SELECT KartonID, PacijentID, Dijagnoza, Terapija, DatumKartona FROM Kartoni WHER
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((byte[])(Terapija));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Terapija));
             }
             if ((DatumKartona.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DatumKartona.Value));
@@ -3347,7 +3347,7 @@ SELECT KartonID, PacijentID, Dijagnoza, Terapija, DatumKartona FROM Kartoni WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int PacijentID, string Dijagnoza, byte[] Terapija, global::System.Nullable<global::System.DateTime> DatumKartona, int Original_KartonID, int Original_PacijentID, global::System.Nullable<global::System.DateTime> Original_DatumKartona) {
+        public virtual int Update(int PacijentID, string Dijagnoza, string Terapija, global::System.Nullable<global::System.DateTime> DatumKartona, int Original_KartonID, int Original_PacijentID, global::System.Nullable<global::System.DateTime> Original_DatumKartona) {
             return this.Update(PacijentID, Dijagnoza, Terapija, DatumKartona, Original_KartonID, Original_PacijentID, Original_DatumKartona, Original_KartonID);
         }
     }

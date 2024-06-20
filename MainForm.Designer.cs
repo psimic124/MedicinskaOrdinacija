@@ -73,6 +73,7 @@
             this.btnCartons.TabIndex = 3;
             this.btnCartons.Text = "Upravljaj Med. Kartonima";
             this.btnCartons.UseVisualStyleBackColor = false;
+            this.btnCartons.Click += new System.EventHandler(this.btnCartons_Click);
             // 
             // btnDoctors
             // 

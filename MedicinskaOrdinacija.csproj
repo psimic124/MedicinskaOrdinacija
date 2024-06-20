@@ -56,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doktor.cs" />
+    <Compile Include="FormCartons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCartons.Designer.cs">
+      <DependentUpon>FormCartons.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDoctors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedOrdinacijaDataSet.cs">
+      <DependentUpon>MedOrdinacijaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MedOrdinacijaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +94,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Termin.cs" />
+    <EmbeddedResource Include="FormCartons.resx">
+      <DependentUpon>FormCartons.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDoctors.resx">
       <DependentUpon>FormDoctors.cs</DependentUpon>
     </EmbeddedResource>

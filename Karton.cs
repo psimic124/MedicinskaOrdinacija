@@ -16,7 +16,7 @@ namespace MedicinskaOrdinacija
 
         public string Dijagnoza { get; set; }
 
-        public byte[] Terapija { get; set; }
+        public string Terapija { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? DatumKartona { get; set; }
