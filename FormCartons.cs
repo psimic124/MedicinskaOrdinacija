@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace MedicinskaOrdinacija {
     public partial class FormCartons : Form {
@@ -74,11 +77,101 @@ namespace MedicinskaOrdinacija {
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
+            try {
+                if (dgvCartons.SelectedRows.Count > 0) {
+                    int selectedKartonID = Convert.ToInt32(dgvCartons.SelectedRows[0].Cells["kartonIDDataGridViewTextBoxColumn"].Value);
 
+                    using (var context = new OrdinacijaDB()) {
+                        var kartonToUpdate = context.Kartoni.Find(selectedKartonID);
+                        if (kartonToUpdate != null) {
+                            kartonToUpdate.PacijentID = (int)cbPatients.SelectedValue;
+                            kartonToUpdate.Dijagnoza = rtbDiagnosis.Text;
+                            kartonToUpdate.Terapija = rtbTherapy.Text;
+                            kartonToUpdate.DatumKartona = dtp.Value;
+
+                            context.SaveChanges();
+                        }
+                    }
+
+                    LoadCartons();
+                    ClearInputs();
+
+                    MessageBox.Show("Karton uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else {
+                    MessageBox.Show("Molimo odaberite karton za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Greška pri ažuriranju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnShow_Click(object sender, EventArgs e) {
             LoadCartons();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e) {
+            try {
+                if (dgvCartons.SelectedRows.Count > 0) {
+                    int selectedKartonID = Convert.ToInt32(dgvCartons.SelectedRows[0].Cells["kartonIDDataGridViewTextBoxColumn"].Value);
+
+                    using (var context = new OrdinacijaDB()) {
+                        var kartonToDelete = context.Kartoni.Find(selectedKartonID);
+                        if (kartonToDelete != null) {
+                            context.Kartoni.Remove(kartonToDelete);
+                            context.SaveChanges();
+                        }
+                    }
+
+                    LoadCartons();
+                    ClearInputs();
+
+                    MessageBox.Show("Karton uspješno obrisan!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else {
+                    MessageBox.Show("Molimo odaberite karton za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Greška pri brisanju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e) {
+            try {
+                if (dgvCartons.SelectedRows.Count > 0) {
+                    int selectedKartonID = Convert.ToInt32(dgvCartons.SelectedRows[0].Cells["kartonIDDataGridViewTextBoxColumn"].Value);
+
+                    using (var context = new OrdinacijaDB()) {
+                        var kartonToExport = context.Kartoni.Find(selectedKartonID);
+                        if (kartonToExport != null) {
+                            string json = JsonConvert.SerializeObject(kartonToExport, new JsonSerializerSettings {
+                                Formatting = Newtonsoft.Json.Formatting.Indented,
+                                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                            });
+
+                            SaveFileDialog saveFileDialog = new SaveFileDialog();
+                            saveFileDialog.Filter = "JSON files (*.json)|*.json";
+                            saveFileDialog.FileName = $"Karton_{selectedKartonID}.json";
+
+                            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                                File.WriteAllText(saveFileDialog.FileName, json);
+                                MessageBox.Show("Karton uspješno eksportiran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else {
+                            MessageBox.Show("Nije pronađen odabrani karton.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else {
+                    MessageBox.Show("Molimo odaberite karton za eksport.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Greška pri eksportiranju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -25,6 +25,13 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.dgvCartons = new System.Windows.Forms.DataGridView();
+            this.kartonIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pacijentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dijagnozaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Terapija = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumKartonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kartoniBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medOrdinacijaDataSet = new MedicinskaOrdinacija.MedOrdinacijaDataSet();
             this.lblPatient = new System.Windows.Forms.Label();
             this.cbPatients = new System.Windows.Forms.ComboBox();
             this.lblDiagnosis = new System.Windows.Forms.Label();
@@ -37,13 +44,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
-            this.Terapija = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kartonIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pacijentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dijagnozaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datumKartonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kartoniBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.medOrdinacijaDataSet = new MedicinskaOrdinacija.MedOrdinacijaDataSet();
             this.kartoniTableAdapter = new MedicinskaOrdinacija.MedOrdinacijaDataSetTableAdapters.KartoniTableAdapter();
             this.btnShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCartons)).BeginInit();
@@ -66,6 +66,47 @@
             this.dgvCartons.Name = "dgvCartons";
             this.dgvCartons.Size = new System.Drawing.Size(546, 150);
             this.dgvCartons.TabIndex = 0;
+            // 
+            // kartonIDDataGridViewTextBoxColumn
+            // 
+            this.kartonIDDataGridViewTextBoxColumn.DataPropertyName = "KartonID";
+            this.kartonIDDataGridViewTextBoxColumn.HeaderText = "KartonID";
+            this.kartonIDDataGridViewTextBoxColumn.Name = "kartonIDDataGridViewTextBoxColumn";
+            this.kartonIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pacijentIDDataGridViewTextBoxColumn
+            // 
+            this.pacijentIDDataGridViewTextBoxColumn.DataPropertyName = "PacijentID";
+            this.pacijentIDDataGridViewTextBoxColumn.HeaderText = "PacijentID";
+            this.pacijentIDDataGridViewTextBoxColumn.Name = "pacijentIDDataGridViewTextBoxColumn";
+            // 
+            // dijagnozaDataGridViewTextBoxColumn
+            // 
+            this.dijagnozaDataGridViewTextBoxColumn.DataPropertyName = "Dijagnoza";
+            this.dijagnozaDataGridViewTextBoxColumn.HeaderText = "Dijagnoza";
+            this.dijagnozaDataGridViewTextBoxColumn.Name = "dijagnozaDataGridViewTextBoxColumn";
+            // 
+            // Terapija
+            // 
+            this.Terapija.DataPropertyName = "Terapija";
+            this.Terapija.HeaderText = "Terapija";
+            this.Terapija.Name = "Terapija";
+            // 
+            // datumKartonaDataGridViewTextBoxColumn
+            // 
+            this.datumKartonaDataGridViewTextBoxColumn.DataPropertyName = "DatumKartona";
+            this.datumKartonaDataGridViewTextBoxColumn.HeaderText = "DatumKartona";
+            this.datumKartonaDataGridViewTextBoxColumn.Name = "datumKartonaDataGridViewTextBoxColumn";
+            // 
+            // kartoniBindingSource
+            // 
+            this.kartoniBindingSource.DataMember = "Kartoni";
+            this.kartoniBindingSource.DataSource = this.medOrdinacijaDataSet;
+            // 
+            // medOrdinacijaDataSet
+            // 
+            this.medOrdinacijaDataSet.DataSetName = "MedOrdinacijaDataSet";
+            this.medOrdinacijaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblPatient
             // 
@@ -167,6 +208,7 @@
             this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnExport
             // 
@@ -176,47 +218,7 @@
             this.btnExport.TabIndex = 12;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
-            // 
-            // Terapija
-            // 
-            this.Terapija.DataPropertyName = "Terapija";
-            this.Terapija.HeaderText = "Terapija";
-            this.Terapija.Name = "Terapija";
-            // 
-            // kartonIDDataGridViewTextBoxColumn
-            // 
-            this.kartonIDDataGridViewTextBoxColumn.DataPropertyName = "KartonID";
-            this.kartonIDDataGridViewTextBoxColumn.HeaderText = "KartonID";
-            this.kartonIDDataGridViewTextBoxColumn.Name = "kartonIDDataGridViewTextBoxColumn";
-            this.kartonIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pacijentIDDataGridViewTextBoxColumn
-            // 
-            this.pacijentIDDataGridViewTextBoxColumn.DataPropertyName = "PacijentID";
-            this.pacijentIDDataGridViewTextBoxColumn.HeaderText = "PacijentID";
-            this.pacijentIDDataGridViewTextBoxColumn.Name = "pacijentIDDataGridViewTextBoxColumn";
-            // 
-            // dijagnozaDataGridViewTextBoxColumn
-            // 
-            this.dijagnozaDataGridViewTextBoxColumn.DataPropertyName = "Dijagnoza";
-            this.dijagnozaDataGridViewTextBoxColumn.HeaderText = "Dijagnoza";
-            this.dijagnozaDataGridViewTextBoxColumn.Name = "dijagnozaDataGridViewTextBoxColumn";
-            // 
-            // datumKartonaDataGridViewTextBoxColumn
-            // 
-            this.datumKartonaDataGridViewTextBoxColumn.DataPropertyName = "DatumKartona";
-            this.datumKartonaDataGridViewTextBoxColumn.HeaderText = "DatumKartona";
-            this.datumKartonaDataGridViewTextBoxColumn.Name = "datumKartonaDataGridViewTextBoxColumn";
-            // 
-            // kartoniBindingSource
-            // 
-            this.kartoniBindingSource.DataMember = "Kartoni";
-            this.kartoniBindingSource.DataSource = this.medOrdinacijaDataSet;
-            // 
-            // medOrdinacijaDataSet
-            // 
-            this.medOrdinacijaDataSet.DataSetName = "MedOrdinacijaDataSet";
-            this.medOrdinacijaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // kartoniTableAdapter
             // 
