@@ -13,5 +13,11 @@ namespace MedicinskaOrdinacija {
         public FormSchedules() {
             InitializeComponent();
         }
+
+        private void FormSchedules_Load(object sender, EventArgs e) {
+            // TODO: This line of code loads data into the 'medOrdinacijaDataSet.Termini' table. You can move, or remove it, as needed.
+            this.terminiTableAdapter.Fill(this.medOrdinacijaDataSet.Termini);
+
+        }
     }
 }
