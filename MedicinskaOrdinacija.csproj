@@ -77,6 +77,12 @@
     <Compile Include="FormPatients.Designer.cs">
       <DependentUpon>FormPatients.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSchedules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSchedules.Designer.cs">
+      <DependentUpon>FormSchedules.cs</DependentUpon>
+    </Compile>
     <Compile Include="Karton.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
