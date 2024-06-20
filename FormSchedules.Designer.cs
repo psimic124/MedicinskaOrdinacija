@@ -28,23 +28,23 @@
             this.medOrdinacijaDataSet = new MedicinskaOrdinacija.MedOrdinacijaDataSet();
             this.terminiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.terminiTableAdapter = new MedicinskaOrdinacija.MedOrdinacijaDataSetTableAdapters.TerminiTableAdapter();
-            this.terminIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pacijentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datumVrijemeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.doktorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.napomenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblPatient = new System.Windows.Forms.Label();
             this.lblDoctor = new System.Windows.Forms.Label();
-            this.cbPatient = new System.Windows.Forms.ComboBox();
-            this.cbDoctor = new System.Windows.Forms.ComboBox();
+            this.cbPatients = new System.Windows.Forms.ComboBox();
+            this.cbDoctors = new System.Windows.Forms.ComboBox();
             this.lblDate = new System.Windows.Forms.Label();
             this.dtp = new System.Windows.Forms.DateTimePicker();
             this.lblTip = new System.Windows.Forms.Label();
-            this.rtbTip = new System.Windows.Forms.RichTextBox();
+            this.rtbNote = new System.Windows.Forms.RichTextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
+            this.pacijentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.terminIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datumVrijemeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doktorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.napomenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medOrdinacijaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.terminiBindingSource)).BeginInit();
@@ -55,8 +55,8 @@
             this.dgvSchedules.AutoGenerateColumns = false;
             this.dgvSchedules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedules.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.terminIDDataGridViewTextBoxColumn,
             this.pacijentIDDataGridViewTextBoxColumn,
+            this.terminIDDataGridViewTextBoxColumn,
             this.datumVrijemeDataGridViewTextBoxColumn,
             this.doktorIDDataGridViewTextBoxColumn,
             this.napomenaDataGridViewTextBoxColumn});
@@ -80,37 +80,6 @@
             // 
             this.terminiTableAdapter.ClearBeforeFill = true;
             // 
-            // terminIDDataGridViewTextBoxColumn
-            // 
-            this.terminIDDataGridViewTextBoxColumn.DataPropertyName = "TerminID";
-            this.terminIDDataGridViewTextBoxColumn.HeaderText = "TerminID";
-            this.terminIDDataGridViewTextBoxColumn.Name = "terminIDDataGridViewTextBoxColumn";
-            this.terminIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pacijentIDDataGridViewTextBoxColumn
-            // 
-            this.pacijentIDDataGridViewTextBoxColumn.DataPropertyName = "PacijentID";
-            this.pacijentIDDataGridViewTextBoxColumn.HeaderText = "PacijentID";
-            this.pacijentIDDataGridViewTextBoxColumn.Name = "pacijentIDDataGridViewTextBoxColumn";
-            // 
-            // datumVrijemeDataGridViewTextBoxColumn
-            // 
-            this.datumVrijemeDataGridViewTextBoxColumn.DataPropertyName = "DatumVrijeme";
-            this.datumVrijemeDataGridViewTextBoxColumn.HeaderText = "DatumVrijeme";
-            this.datumVrijemeDataGridViewTextBoxColumn.Name = "datumVrijemeDataGridViewTextBoxColumn";
-            // 
-            // doktorIDDataGridViewTextBoxColumn
-            // 
-            this.doktorIDDataGridViewTextBoxColumn.DataPropertyName = "DoktorID";
-            this.doktorIDDataGridViewTextBoxColumn.HeaderText = "DoktorID";
-            this.doktorIDDataGridViewTextBoxColumn.Name = "doktorIDDataGridViewTextBoxColumn";
-            // 
-            // napomenaDataGridViewTextBoxColumn
-            // 
-            this.napomenaDataGridViewTextBoxColumn.DataPropertyName = "Napomena";
-            this.napomenaDataGridViewTextBoxColumn.HeaderText = "Napomena";
-            this.napomenaDataGridViewTextBoxColumn.Name = "napomenaDataGridViewTextBoxColumn";
-            // 
             // lblPatient
             // 
             this.lblPatient.AutoSize = true;
@@ -131,21 +100,22 @@
             this.lblDoctor.TabIndex = 2;
             this.lblDoctor.Text = "Odaberite doktora:";
             // 
-            // cbPatient
+            // cbPatients
             // 
-            this.cbPatient.FormattingEnabled = true;
-            this.cbPatient.Location = new System.Drawing.Point(240, 43);
-            this.cbPatient.Name = "cbPatient";
-            this.cbPatient.Size = new System.Drawing.Size(176, 21);
-            this.cbPatient.TabIndex = 3;
+            this.cbPatients.FormattingEnabled = true;
+            this.cbPatients.Location = new System.Drawing.Point(240, 43);
+            this.cbPatients.Name = "cbPatients";
+            this.cbPatients.Size = new System.Drawing.Size(176, 21);
+            this.cbPatients.TabIndex = 3;
             // 
-            // cbDoctor
+            // cbDoctors
             // 
-            this.cbDoctor.FormattingEnabled = true;
-            this.cbDoctor.Location = new System.Drawing.Point(240, 110);
-            this.cbDoctor.Name = "cbDoctor";
-            this.cbDoctor.Size = new System.Drawing.Size(176, 21);
-            this.cbDoctor.TabIndex = 4;
+            this.cbDoctors.FormattingEnabled = true;
+            this.cbDoctors.Location = new System.Drawing.Point(240, 110);
+            this.cbDoctors.Name = "cbDoctors";
+            this.cbDoctors.Size = new System.Drawing.Size(176, 21);
+            this.cbDoctors.TabIndex = 4;
+            this.cbDoctors.SelectedIndexChanged += new System.EventHandler(this.cbDoctors_SelectedIndexChanged);
             // 
             // lblDate
             // 
@@ -174,13 +144,13 @@
             this.lblTip.TabIndex = 7;
             this.lblTip.Text = "Napomena:";
             // 
-            // rtbTip
+            // rtbNote
             // 
-            this.rtbTip.Location = new System.Drawing.Point(571, 44);
-            this.rtbTip.Name = "rtbTip";
-            this.rtbTip.Size = new System.Drawing.Size(194, 198);
-            this.rtbTip.TabIndex = 8;
-            this.rtbTip.Text = "";
+            this.rtbNote.Location = new System.Drawing.Point(571, 44);
+            this.rtbNote.Name = "rtbNote";
+            this.rtbNote.Size = new System.Drawing.Size(194, 198);
+            this.rtbNote.TabIndex = 8;
+            this.rtbNote.Text = "";
             // 
             // btnSave
             // 
@@ -190,6 +160,7 @@
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUpdate
             // 
@@ -199,6 +170,7 @@
             this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -208,6 +180,7 @@
             this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnShow
             // 
@@ -217,6 +190,38 @@
             this.btnShow.TabIndex = 12;
             this.btnShow.Text = "Show all";
             this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // pacijentIDDataGridViewTextBoxColumn
+            // 
+            this.pacijentIDDataGridViewTextBoxColumn.DataPropertyName = "PacijentID";
+            this.pacijentIDDataGridViewTextBoxColumn.HeaderText = "PacijentID";
+            this.pacijentIDDataGridViewTextBoxColumn.Name = "pacijentIDDataGridViewTextBoxColumn";
+            // 
+            // terminIDDataGridViewTextBoxColumn
+            // 
+            this.terminIDDataGridViewTextBoxColumn.DataPropertyName = "TerminID";
+            this.terminIDDataGridViewTextBoxColumn.HeaderText = "TerminID";
+            this.terminIDDataGridViewTextBoxColumn.Name = "terminIDDataGridViewTextBoxColumn";
+            this.terminIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // datumVrijemeDataGridViewTextBoxColumn
+            // 
+            this.datumVrijemeDataGridViewTextBoxColumn.DataPropertyName = "DatumVrijeme";
+            this.datumVrijemeDataGridViewTextBoxColumn.HeaderText = "DatumVrijeme";
+            this.datumVrijemeDataGridViewTextBoxColumn.Name = "datumVrijemeDataGridViewTextBoxColumn";
+            // 
+            // doktorIDDataGridViewTextBoxColumn
+            // 
+            this.doktorIDDataGridViewTextBoxColumn.DataPropertyName = "DoktorID";
+            this.doktorIDDataGridViewTextBoxColumn.HeaderText = "DoktorID";
+            this.doktorIDDataGridViewTextBoxColumn.Name = "doktorIDDataGridViewTextBoxColumn";
+            // 
+            // napomenaDataGridViewTextBoxColumn
+            // 
+            this.napomenaDataGridViewTextBoxColumn.DataPropertyName = "Napomena";
+            this.napomenaDataGridViewTextBoxColumn.HeaderText = "Napomena";
+            this.napomenaDataGridViewTextBoxColumn.Name = "napomenaDataGridViewTextBoxColumn";
             // 
             // FormSchedules
             // 
@@ -227,12 +232,12 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.rtbTip);
+            this.Controls.Add(this.rtbNote);
             this.Controls.Add(this.lblTip);
             this.Controls.Add(this.dtp);
             this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.cbDoctor);
-            this.Controls.Add(this.cbPatient);
+            this.Controls.Add(this.cbDoctors);
+            this.Controls.Add(this.cbPatients);
             this.Controls.Add(this.lblDoctor);
             this.Controls.Add(this.lblPatient);
             this.Controls.Add(this.dgvSchedules);
@@ -253,22 +258,22 @@
         private MedOrdinacijaDataSet medOrdinacijaDataSet;
         private System.Windows.Forms.BindingSource terminiBindingSource;
         private MedOrdinacijaDataSetTableAdapters.TerminiTableAdapter terminiTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn terminIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pacijentIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumVrijemeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doktorIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn napomenaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblPatient;
         private System.Windows.Forms.Label lblDoctor;
-        private System.Windows.Forms.ComboBox cbPatient;
-        private System.Windows.Forms.ComboBox cbDoctor;
+        private System.Windows.Forms.ComboBox cbPatients;
+        private System.Windows.Forms.ComboBox cbDoctors;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.DateTimePicker dtp;
         private System.Windows.Forms.Label lblTip;
-        private System.Windows.Forms.RichTextBox rtbTip;
+        private System.Windows.Forms.RichTextBox rtbNote;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pacijentIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn terminIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumVrijemeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doktorIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn napomenaDataGridViewTextBoxColumn;
     }
 }

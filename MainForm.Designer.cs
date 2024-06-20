@@ -62,6 +62,7 @@
             this.btnSchedules.TabIndex = 2;
             this.btnSchedules.Text = "Upravljaj Terminima";
             this.btnSchedules.UseVisualStyleBackColor = false;
+            this.btnSchedules.Click += new System.EventHandler(this.btnSchedules_Click);
             // 
             // btnCartons
             // 
