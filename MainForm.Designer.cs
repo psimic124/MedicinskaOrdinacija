@@ -84,6 +84,7 @@
             this.btnDoctors.TabIndex = 4;
             this.btnDoctors.Text = "Upravljaj Doktorima";
             this.btnDoctors.UseVisualStyleBackColor = false;
+            this.btnDoctors.Click += new System.EventHandler(this.btnDoctors_Click);
             // 
             // MainForm
             // 
