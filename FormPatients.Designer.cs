@@ -37,9 +37,6 @@
             this.lblHistory = new System.Windows.Forms.Label();
             this.rtbHistory = new System.Windows.Forms.RichTextBox();
             this.dgvPatients = new System.Windows.Forms.DataGridView();
-            this.medOrdinacijaDataSet = new MedicinskaOrdinacija.MedOrdinacijaDataSet();
-            this.pacijentiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pacijentiTableAdapter = new MedicinskaOrdinacija.MedOrdinacijaDataSetTableAdapters.PacijentiTableAdapter();
             this.pacijentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,12 +44,15 @@
             this.adresaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.povijestBolestiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pacijentiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medOrdinacijaDataSet = new MedicinskaOrdinacija.MedOrdinacijaDataSet();
+            this.pacijentiTableAdapter = new MedicinskaOrdinacija.MedOrdinacijaDataSetTableAdapters.PacijentiTableAdapter();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medOrdinacijaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pacijentiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medOrdinacijaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -176,20 +176,6 @@
             this.dgvPatients.Size = new System.Drawing.Size(759, 160);
             this.dgvPatients.TabIndex = 12;
             // 
-            // medOrdinacijaDataSet
-            // 
-            this.medOrdinacijaDataSet.DataSetName = "MedOrdinacijaDataSet";
-            this.medOrdinacijaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pacijentiBindingSource
-            // 
-            this.pacijentiBindingSource.DataMember = "Pacijenti";
-            this.pacijentiBindingSource.DataSource = this.medOrdinacijaDataSet;
-            // 
-            // pacijentiTableAdapter
-            // 
-            this.pacijentiTableAdapter.ClearBeforeFill = true;
-            // 
             // pacijentIDDataGridViewTextBoxColumn
             // 
             this.pacijentIDDataGridViewTextBoxColumn.DataPropertyName = "PacijentID";
@@ -233,6 +219,20 @@
             this.povijestBolestiDataGridViewTextBoxColumn.HeaderText = "PovijestBolesti";
             this.povijestBolestiDataGridViewTextBoxColumn.Name = "povijestBolestiDataGridViewTextBoxColumn";
             // 
+            // pacijentiBindingSource
+            // 
+            this.pacijentiBindingSource.DataMember = "Pacijenti";
+            this.pacijentiBindingSource.DataSource = this.medOrdinacijaDataSet;
+            // 
+            // medOrdinacijaDataSet
+            // 
+            this.medOrdinacijaDataSet.DataSetName = "MedOrdinacijaDataSet";
+            this.medOrdinacijaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // pacijentiTableAdapter
+            // 
+            this.pacijentiTableAdapter.ClearBeforeFill = true;
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(29, 250);
@@ -251,6 +251,7 @@
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -260,6 +261,7 @@
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // FormPatients
             // 
@@ -286,8 +288,8 @@
             this.Text = "FormPatients";
             this.Load += new System.EventHandler(this.FormPatients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medOrdinacijaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pacijentiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medOrdinacijaDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

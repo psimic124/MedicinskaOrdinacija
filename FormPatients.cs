@@ -63,5 +63,70 @@ namespace MedicinskaOrdinacija {
             tbPhone.Text = string.Empty;
             rtbHistory.Text = string.Empty;
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e) {
+            try {
+                if (dgvPatients.SelectedRows.Count > 0) {
+
+                    int selectedPatientID = Convert.ToInt32(dgvPatients.SelectedRows[0].Cells["pacijentIDDataGridViewTextBoxColumn"].Value);
+
+                    using (var context = new OrdinacijaDB()) {
+                        var patientToUpdate = context.Pacijenti.Find(selectedPatientID);
+                        if (patientToUpdate != null) {
+
+                            patientToUpdate.Ime = tbName.Text;
+                            patientToUpdate.Prezime = tbSurname.Text;
+                            patientToUpdate.DatumRodjenja = dtp.Value;
+                            patientToUpdate.Adresa = tbAdress.Text;
+                            patientToUpdate.Telefon = tbPhone.Text;
+                            patientToUpdate.PovijestBolesti = rtbHistory.Text;
+
+                            context.SaveChanges();
+                        }
+                    }
+
+                    LoadPatients();
+                    ClearInputs();
+
+                    MessageBox.Show("Pacijent uspješno ažuriran!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else {
+                    MessageBox.Show("Molim odaberite pacijenta kojeg želite ažurirati.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Pacijent se nije uspješno ažurirao: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e) {
+            try {
+                if (dgvPatients.SelectedRows.Count > 0) {
+
+                    int selectedPatientID = Convert.ToInt32(dgvPatients.SelectedRows[0].Cells["pacijentIDDataGridViewTextBoxColumn"].Value);
+
+                    using (var context = new OrdinacijaDB()) {
+
+                        var patientToDelete = context.Pacijenti.Find(selectedPatientID);
+                        if (patientToDelete != null) {
+                            context.Pacijenti.Remove(patientToDelete);
+                            context.SaveChanges();
+                        }
+                    }
+
+                    LoadPatients();
+                    ClearInputs();
+
+                    MessageBox.Show("Pacijent uspješno izbrisan iz baze!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else {
+                    MessageBox.Show("Molim odaberite pacijenta kojeg želite izbrisati iz baze.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Pacijent nije uspješno izbrisan iz baze: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
