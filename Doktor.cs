@@ -7,12 +7,16 @@ namespace MedicinskaOrdinacija
     using System.Data.Entity.Spatial;
 
     [Table("Doktori")]
-    public partial class Doktor
+    public partial class Doktor : Osoba
 {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doktor()
         {
             Termini = new HashSet<Termin>();
+
+            this.ID = DoktorID;
+            this.Ime = Ime;
+            this.Prezime = Prezime;
         }
 
         [Key]
@@ -35,5 +39,9 @@ namespace MedicinskaOrdinacija
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Termin> Termini { get; set; }
+
+        public override void PrikaziInformacije() {
+            Console.WriteLine($"Doktor: {Ime} {Prezime}, Specijalizacija: {Specijalizacija}");
+        }
     }
 }
