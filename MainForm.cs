@@ -33,5 +33,45 @@ namespace MedicinskaOrdinacija {
             FormSchedules formSchedules = new FormSchedules();
             formSchedules.ShowDialog();
         }
+
+        private void btnShow_Click(object sender, EventArgs e) {
+            using (var context = new OrdinacijaDB()) {
+                List<Osoba> osobe = new List<Osoba>();
+
+                var pacijenti = context.Pacijenti.Select(p => new {
+                    PacijentID = p.PacijentID,
+                    Ime = p.Ime,
+                    Prezime = p.Prezime,
+                    Telefon = p.Telefon,
+                    Adresa = p.Adresa,
+                }).ToList().Select(p => new Pacijent {
+                    PacijentID = p.PacijentID,
+                    Ime = p.Ime,
+                    Prezime = p.Prezime,
+                    Telefon = p.Telefon,
+                    Adresa = p.Adresa
+                }).ToList();
+                osobe.AddRange(pacijenti);
+
+                var doktori = context.Doktori.Select(d => new{
+                    DoktorID = d.DoktorID,
+                    Ime = d.Ime,
+                    Prezime = d.Prezime,
+                    Telefon = d.Telefon,
+                    Specijalizacija = d.Specijalizacija,
+                }).ToList().Select(d => new Doktor {
+                    DoktorID = d.DoktorID,
+                    Ime = d.Ime,
+                    Prezime = d.Prezime,
+                    Telefon = d.Telefon,
+                    Specijalizacija = d.Specijalizacija
+                }).ToList();
+                osobe.AddRange(doktori);
+
+                FormPeople formPeople = new FormPeople();
+                formPeople.PrikaziSveOsobe(osobe);
+                formPeople.ShowDialog();
+            }
+        }
     }
 }

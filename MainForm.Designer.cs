@@ -28,6 +28,7 @@
             this.btnSchedules = new System.Windows.Forms.Button();
             this.btnCartons = new System.Windows.Forms.Button();
             this.btnDoctors = new System.Windows.Forms.Button();
+            this.btnShow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -44,7 +45,7 @@
             // 
             this.btnPatients.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnPatients.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPatients.Location = new System.Drawing.Point(60, 174);
+            this.btnPatients.Location = new System.Drawing.Point(60, 199);
             this.btnPatients.Name = "btnPatients";
             this.btnPatients.Size = new System.Drawing.Size(190, 63);
             this.btnPatients.TabIndex = 1;
@@ -80,7 +81,7 @@
             // 
             this.btnDoctors.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnDoctors.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoctors.Location = new System.Drawing.Point(471, 174);
+            this.btnDoctors.Location = new System.Drawing.Point(471, 199);
             this.btnDoctors.Name = "btnDoctors";
             this.btnDoctors.Size = new System.Drawing.Size(190, 63);
             this.btnDoctors.TabIndex = 4;
@@ -88,11 +89,23 @@
             this.btnDoctors.UseVisualStyleBackColor = false;
             this.btnDoctors.Click += new System.EventHandler(this.btnDoctors_Click);
             // 
+            // btnShow
+            // 
+            this.btnShow.BackColor = System.Drawing.SystemColors.Info;
+            this.btnShow.Location = new System.Drawing.Point(270, 102);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(173, 50);
+            this.btnShow.TabIndex = 5;
+            this.btnShow.Text = "Prikaži sve pacijente i doktore";
+            this.btnShow.UseVisualStyleBackColor = false;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 450);
+            this.Controls.Add(this.btnShow);
             this.Controls.Add(this.btnDoctors);
             this.Controls.Add(this.btnCartons);
             this.Controls.Add(this.btnSchedules);
@@ -112,6 +125,7 @@
         private System.Windows.Forms.Button btnSchedules;
         private System.Windows.Forms.Button btnCartons;
         private System.Windows.Forms.Button btnDoctors;
+        private System.Windows.Forms.Button btnShow;
     }
 }
 
