@@ -70,21 +70,43 @@ namespace MedicinskaOrdinacija {
                     using (var context = new OrdinacijaDB()) {
                         var doctorToUpdate = context.Doktori.Find(selectedDoctorID);
                         if (doctorToUpdate != null) {
+                            bool isUpdated = false;
 
-                            doctorToUpdate.Ime = tbName.Text;
-                            doctorToUpdate.Prezime = tbSurname.Text;
-                            doctorToUpdate.Specijalizacija = tbSpec.Text;
-                            doctorToUpdate.Telefon = tbPhone.Text;
-                            doctorToUpdate.Email = tbEmail.Text;
-
-                            context.SaveChanges();
+                            if (!string.IsNullOrEmpty(tbName.Text) && doctorToUpdate.Ime != tbName.Text) {
+                                doctorToUpdate.Ime = tbName.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbSurname.Text) && doctorToUpdate.Prezime != tbSurname.Text) {
+                                doctorToUpdate.Prezime = tbSurname.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbSpec.Text) && doctorToUpdate.Specijalizacija != tbSpec.Text) {
+                                doctorToUpdate.Specijalizacija = tbSpec.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbPhone.Text) && doctorToUpdate.Telefon != tbPhone.Text) {
+                                doctorToUpdate.Telefon = tbPhone.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbEmail.Text) && doctorToUpdate.Email != tbEmail.Text) {
+                                doctorToUpdate.Email = tbEmail.Text;
+                                isUpdated = true;
+                            }
+                            if (isUpdated) {
+                                context.SaveChanges();
+                                MessageBox.Show("Doktor uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else {
+                                MessageBox.Show("Nema promjena za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else {
+                            MessageBox.Show("Nije pronađen doktor za ažuriranje.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
                     LoadPatients();
                     ClearInputs();
-
-                    MessageBox.Show("Doktor uspješno ažuriran!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
                     MessageBox.Show("Molim odaberite doktora kojeg želite ažurirati.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

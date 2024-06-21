@@ -73,22 +73,48 @@ namespace MedicinskaOrdinacija {
                     using (var context = new OrdinacijaDB()) {
                         var patientToUpdate = context.Pacijenti.Find(selectedPatientID);
                         if (patientToUpdate != null) {
+                            bool isUpdated = false;
 
-                            patientToUpdate.Ime = tbName.Text;
-                            patientToUpdate.Prezime = tbSurname.Text;
-                            patientToUpdate.DatumRodjenja = dtp.Value;
-                            patientToUpdate.Adresa = tbAdress.Text;
-                            patientToUpdate.Telefon = tbPhone.Text;
-                            patientToUpdate.PovijestBolesti = rtbHistory.Text;
+                            if (!string.IsNullOrEmpty(tbName.Text) && patientToUpdate.Ime != tbName.Text) {
+                                patientToUpdate.Ime = tbName.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbSurname.Text) && patientToUpdate.Prezime != tbSurname.Text) {
+                                patientToUpdate.Prezime = tbSurname.Text;
+                                isUpdated = true;
+                            }
+                            if (dtp.Value != patientToUpdate.DatumRodjenja) {
+                                patientToUpdate.DatumRodjenja = dtp.Value;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbAdress.Text) && patientToUpdate.Adresa != tbAdress.Text) {
+                                patientToUpdate.Adresa = tbAdress.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(tbPhone.Text) && patientToUpdate.Telefon != tbPhone.Text) {
+                                patientToUpdate.Telefon = tbPhone.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(rtbHistory.Text) && patientToUpdate.PovijestBolesti != rtbHistory.Text) {
+                                patientToUpdate.PovijestBolesti = rtbHistory.Text;
+                                isUpdated = true;
+                            }
 
-                            context.SaveChanges();
+                            if (isUpdated) {
+                                context.SaveChanges();
+                                MessageBox.Show("Pacijent uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else {
+                                MessageBox.Show("Nema promjena za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else {
+                            MessageBox.Show("Nije pronađen pacijent za ažuriranje.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
                     LoadPatients();
                     ClearInputs();
-
-                    MessageBox.Show("Pacijent uspješno ažuriran!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
                     MessageBox.Show("Molim odaberite pacijenta kojeg želite ažurirati.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

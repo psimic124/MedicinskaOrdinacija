@@ -84,19 +84,35 @@ namespace MedicinskaOrdinacija {
                     using (var context = new OrdinacijaDB()) {
                         var kartonToUpdate = context.Kartoni.Find(selectedKartonID);
                         if (kartonToUpdate != null) {
-                            kartonToUpdate.PacijentID = (int)cbPatients.SelectedValue;
-                            kartonToUpdate.Dijagnoza = rtbDiagnosis.Text;
-                            kartonToUpdate.Terapija = rtbTherapy.Text;
-                            kartonToUpdate.DatumKartona = dtp.Value;
+                            bool isUpdated = false;
 
-                            context.SaveChanges();
+                            kartonToUpdate.PacijentID = (int)cbPatients.SelectedValue;
+                             if (!string.IsNullOrEmpty(rtbDiagnosis.Text) && kartonToUpdate.Dijagnoza != rtbDiagnosis.Text) {
+                                kartonToUpdate.Dijagnoza = rtbDiagnosis.Text;
+                                isUpdated = true;
+                            }
+                            if (!string.IsNullOrEmpty(rtbTherapy.Text) && kartonToUpdate.Terapija != rtbTherapy.Text) {
+                                kartonToUpdate.Terapija = rtbTherapy.Text;
+                                isUpdated = true;
+                            }
+                            if (dtp.Value != kartonToUpdate.DatumKartona) {
+                                kartonToUpdate.DatumKartona = dtp.Value;
+                                isUpdated = true;
+                            }
+                            if (isUpdated) {
+                                context.SaveChanges();
+                                MessageBox.Show("Karton uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else {
+                                MessageBox.Show("Nema promjena za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else {
+                            MessageBox.Show("Nije pronađen karton za ažuriranje.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-
                     LoadCartons();
                     ClearInputs();
-
-                    MessageBox.Show("Karton uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
                     MessageBox.Show("Molimo odaberite karton za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);

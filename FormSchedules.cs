@@ -114,19 +114,34 @@ namespace MedicinskaOrdinacija {
                     using (var context = new OrdinacijaDB()) {
                         var terminToUpdate = context.Termini.Find(selectedTerminID);
                         if (terminToUpdate != null) {
+                            bool isUpdated = false;
+
                             terminToUpdate.PacijentID = (int)cbPatients.SelectedValue;
                             terminToUpdate.DoktorID = (int)cbDoctors.SelectedValue;
-                            terminToUpdate.Napomena = rtbNote.Text;
-                            terminToUpdate.DatumVrijeme = dtp.Value;
+                            if (!string.IsNullOrEmpty(rtbNote.Text) && terminToUpdate.Napomena != rtbNote.Text) {
+                                terminToUpdate.Napomena = rtbNote.Text;
+                                isUpdated = true;
+                            }
+                            if (dtp.Value != terminToUpdate.DatumVrijeme) {
+                                terminToUpdate.DatumVrijeme = dtp.Value;
+                                isUpdated = true;
+                            }
 
-                            context.SaveChanges();
+                            if (isUpdated) {
+                                context.SaveChanges();
+                                MessageBox.Show("Termin uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else {
+                                MessageBox.Show("Nema promjena za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else {
+                            MessageBox.Show("Nije pronađen termin za ažuriranje.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
                     LoadSchedules();
                     ClearInputs();
-
-                    MessageBox.Show("Termin uspješno ažuriran!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
                     MessageBox.Show("Molimo odaberite termin za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
