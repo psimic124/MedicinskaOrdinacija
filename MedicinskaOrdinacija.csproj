@@ -42,14 +42,11 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,7 +56,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doktor.cs" />
@@ -80,12 +76,6 @@
     </Compile>
     <Compile Include="FormPatients.Designer.cs">
       <DependentUpon>FormPatients.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormPeople.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPeople.Designer.cs">
-      <DependentUpon>FormPeople.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSchedules.cs">
       <SubType>Form</SubType>
@@ -109,7 +99,6 @@
       <DependentUpon>MedOrdinacijaDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="OrdinacijaDB.cs" />
-    <Compile Include="Osoba.cs" />
     <Compile Include="Pacijent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,9 +111,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPatients.resx">
       <DependentUpon>FormPatients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPeople.resx">
-      <DependentUpon>FormPeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSchedules.resx">
       <DependentUpon>FormSchedules.cs</DependentUpon>
