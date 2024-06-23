@@ -28,6 +28,7 @@
             this.btnSchedules = new System.Windows.Forms.Button();
             this.btnCartons = new System.Windows.Forms.Button();
             this.btnDoctors = new System.Windows.Forms.Button();
+            this.btnPeople = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -88,11 +89,24 @@
             this.btnDoctors.UseVisualStyleBackColor = false;
             this.btnDoctors.Click += new System.EventHandler(this.btnDoctors_Click);
             // 
+            // btnPeople
+            // 
+            this.btnPeople.BackColor = System.Drawing.SystemColors.Info;
+            this.btnPeople.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeople.Location = new System.Drawing.Point(275, 250);
+            this.btnPeople.Name = "btnPeople";
+            this.btnPeople.Size = new System.Drawing.Size(176, 62);
+            this.btnPeople.TabIndex = 5;
+            this.btnPeople.Text = "Prikazi zaposlenike i pacijente";
+            this.btnPeople.UseVisualStyleBackColor = false;
+            this.btnPeople.Click += new System.EventHandler(this.btnPeople_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 450);
+            this.Controls.Add(this.btnPeople);
             this.Controls.Add(this.btnDoctors);
             this.Controls.Add(this.btnCartons);
             this.Controls.Add(this.btnSchedules);
@@ -112,6 +126,7 @@
         private System.Windows.Forms.Button btnSchedules;
         private System.Windows.Forms.Button btnCartons;
         private System.Windows.Forms.Button btnDoctors;
+        private System.Windows.Forms.Button btnPeople;
     }
 }
 

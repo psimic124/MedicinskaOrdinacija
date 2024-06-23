@@ -33,5 +33,10 @@ namespace MedicinskaOrdinacija {
             FormSchedules formSchedules = new FormSchedules();
             formSchedules.ShowDialog();
         }
+
+        private void btnPeople_Click(object sender, EventArgs e) {
+            FormPeople formPeople = new FormPeople();
+            formPeople.ShowDialog();
+        }
     }
 }
