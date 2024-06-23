@@ -44,8 +44,12 @@ namespace MedicinskaOrdinacija {
 
                 MessageBox.Show("Novi pacijent uspješno spremljen!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (SaveException ex) {
+                MessageBox.Show($"Pacijent se nije uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Nije se pacijent uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var pacijentEx = new SaveException($"Pacijent se nije uspješno spremio: {ex.Message}", ex);
+                MessageBox.Show(pacijentEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -117,11 +121,15 @@ namespace MedicinskaOrdinacija {
                     ClearInputs();
                 }
                 else {
-                    MessageBox.Show("Molim odaberite pacijenta kojeg želite ažurirati.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new UpdateException("Molim odaberite pacijenta kojeg želite ažurirati.");
                 }
             }
+            catch (UpdateException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Pacijent se nije uspješno ažurirao: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var updateEx = new UpdateException($"Pacijent se nije uspješno ažurirao: {ex.Message}", ex);
+                MessageBox.Show(updateEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -146,11 +154,15 @@ namespace MedicinskaOrdinacija {
                     MessageBox.Show("Pacijent uspješno izbrisan iz baze!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
-                    MessageBox.Show("Molim odaberite pacijenta kojeg želite izbrisati iz baze.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new DeleteException("Molim odaberite pacijenta kojeg želite izbrisati iz baze.");
                 }
             }
+            catch (DeleteException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Pacijent nije uspješno izbrisan iz baze: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var deleteEx = new DeleteException($"Pacijent nije uspješno izbrisan iz baze: {ex.Message}", ex);
+                MessageBox.Show(deleteEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

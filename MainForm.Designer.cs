@@ -99,7 +99,7 @@
             this.Controls.Add(this.btnPatients);
             this.Controls.Add(this.lblTitle);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "MainForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

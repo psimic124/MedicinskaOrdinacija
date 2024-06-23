@@ -38,8 +38,12 @@ namespace MedicinskaOrdinacija {
 
                 MessageBox.Show("Novi karton uspješno spremljen!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (SaveException ex) {
+                MessageBox.Show($"Karton se nije uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Nije se karton uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var saveEx = new SaveException($"Karton se nije uspješno spremio: {ex.Message}", ex);
+                MessageBox.Show(saveEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -115,11 +119,15 @@ namespace MedicinskaOrdinacija {
                     ClearInputs();
                 }
                 else {
-                    MessageBox.Show("Molimo odaberite karton za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new UpdateException("Molim odaberite karton koji želite ažurirati.");
                 }
             }
+            catch (UpdateException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Greška pri ažuriranju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var updateEx = new UpdateException($"Karton se nije uspješno ažurirao: {ex.Message}", ex);
+                MessageBox.Show(updateEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -146,11 +154,15 @@ namespace MedicinskaOrdinacija {
                     MessageBox.Show("Karton uspješno obrisan!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
-                    MessageBox.Show("Molimo odaberite karton za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new DeleteException("Molim odaberite karton koji želite izbrisati iz baze.");
                 }
             }
+            catch (DeleteException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Greška pri brisanju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var deleteEx = new DeleteException($"Karton nije uspješno izbrisan iz baze: {ex.Message}", ex);
+                MessageBox.Show(deleteEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -182,11 +194,15 @@ namespace MedicinskaOrdinacija {
                     }
                 }
                 else {
-                    MessageBox.Show("Molimo odaberite karton za eksport.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new ExportException("Molim odaberite karton kojeg želite exportati.");
                 }
             }
+            catch (ExportException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Greška pri eksportiranju kartona: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var exportEx = new ExportException($"Karton nije uspješno exportan: {ex.Message}", ex);
+                MessageBox.Show(exportEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

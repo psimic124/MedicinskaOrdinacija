@@ -42,8 +42,12 @@ namespace MedicinskaOrdinacija {
 
                 MessageBox.Show("Novi termin uspješno spremljen!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (SaveException ex) {
+                MessageBox.Show($"Termin se nije uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Nije se termin uspješno spremio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var terminEx = new SaveException($"Termin se nije uspješno spremio: {ex.Message}", ex);
+                MessageBox.Show(terminEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -144,11 +148,15 @@ namespace MedicinskaOrdinacija {
                     ClearInputs();
                 }
                 else {
-                    MessageBox.Show("Molimo odaberite termin za ažuriranje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new UpdateException("Molim odaberite termin kojeg želite ažurirati.");
                 }
             }
+            catch (UpdateException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Greška pri ažuriranju termina: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var updateEx = new UpdateException($"Termin se nije uspješno ažurirao: {ex.Message}", ex);
+                MessageBox.Show(updateEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -171,11 +179,15 @@ namespace MedicinskaOrdinacija {
                     MessageBox.Show("Termin uspješno obrisan!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else {
-                    MessageBox.Show("Molimo odaberite termin za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    throw new DeleteException("Molim odaberite termin kojeg želite izbrisati iz baze.");
                 }
             }
+            catch (DeleteException ex) {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex) {
-                MessageBox.Show($"Greška pri brisanju termina: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var deleteEx = new DeleteException($"Termin nije uspješno izbrisan iz baze: {ex.Message}", ex);
+                MessageBox.Show(deleteEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
